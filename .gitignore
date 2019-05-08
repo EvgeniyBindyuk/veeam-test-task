@@ -1,5 +1,6 @@
 $ cat .gitignore
 *.[oa]
 *~
-.idea/
-target/
+.idea
+target
+testTask.iml
