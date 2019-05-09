@@ -1,5 +1,5 @@
 package utils;
 
-public enum Language {
+public enum Languages {
     FRENCH
 }

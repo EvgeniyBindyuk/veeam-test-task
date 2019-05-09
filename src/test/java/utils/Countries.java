@@ -1,5 +1,5 @@
 package utils;
 
-public enum Country {
+public enum Countries {
     CANADA
 }

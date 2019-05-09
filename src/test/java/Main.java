@@ -1,19 +1,22 @@
-import org.openqa.selenium.JavascriptExecutor;
 import pages.CareersVeeamPage;
-import utils.Country;
-import utils.Language;
+import utils.Countries;
+import utils.Helper;
+import utils.Languages;
 
 public class Main {
     public static void main(String[] args) {
+
         CareersVeeamPage page = new CareersVeeamPage();
+        Helper helper = new Helper(page.driver);
         page.driver.get("https://careers.veeam.com/");
         page.driver.manage().window().maximize();
-        JavascriptExecutor jse = page.driver;
-        jse.executeScript("window.scrollBy(0,250)", "");
+        helper.scrollDown();
         page.openCountriesList();
-        page.chooseCountry(Country.CANADA);
+        page.chooseCountry(Countries.CANADA);
+        helper.scrollDown();
         page.openLanguageList();
-        page.chooseLanguage(Language.FRENCH);
+        page.chooseLanguage(Languages.FRENCH);
+        page.applyLanguageChoiсe();
 
     }
 }

@@ -1,56 +1,66 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import utils.Country;
-import utils.Language;
+import org.openqa.selenium.support.PageFactory;
+import utils.Countries;
+import utils.Languages;
 import utils.WebDriverSettings;
 
-import java.util.concurrent.TimeUnit;
-
 public class CareersVeeamPage extends WebDriverSettings {
-    public ChromeDriver driver;
 
-    {
-        System.setProperty("webdriver.chrome.driver", "/Program Files/ChromeDriver/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
-
-    @FindBy(id = "country-element")
+    @FindBy(css = "dd[id=\"country-element\"]")
     private
     WebElement countriesList;
 
-    @FindBy(css = "span[data-value=\"Canada\"]")
+    @FindBy(css = "span[data-value=\"canada\"]")
     private
-    WebElement Canada;
+    WebElement canada;
 
     @FindBy(css = "div[id=\"language\"]")
     private
     WebElement languagesList;
 
     @FindBy(css = "label[for=\"ch-10\"]")
+    private
     WebElement french;
+
+    @FindBy(css = "a[class=\"selecter-fieldset-submit\"]")
+    private
+    WebElement applyLanguage;
+
+    @FindBy(css = "div[class=\"vacancies-blocks-container\"]")
+    WebElement jobList;
+
+    public CareersVeeamPage() {
+        PageFactory.initElements(this.driver, this);
+    }
 
     public void openCountriesList() {
         countriesList.click();
     }
 
-    public void chooseCountry(Country countryType) {
-        if (countryType == Country.CANADA) {
-            Canada.click();
+    public String chooseCountry(Countries countriesType) {
+        if (countriesType == Countries.CANADA) {
+            canada.click();
+            return canada.getAttribute("innerText");
         }
+        return null;
     }
 
     public void openLanguageList() {
         languagesList.click();
     }
 
-    public void chooseLanguage(Language languageType) {
-        if (languageType == Language.FRENCH) {
+    public String chooseLanguage(Languages languagesType) {
+        if (languagesType == Languages.FRENCH) {
             french.click();
+            return french.getAttribute("innerText");
         }
+        return null;
+    }
+
+    public void applyLanguageChoiсe() {
+        applyLanguage.click();
     }
 }

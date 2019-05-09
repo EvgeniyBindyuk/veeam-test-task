@@ -10,7 +10,7 @@ public class WebDriverSettings {
     {
         System.setProperty("webdriver.chrome.driver", "/Program Files/ChromeDriver/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
 }
