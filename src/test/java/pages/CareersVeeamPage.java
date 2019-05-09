@@ -4,31 +4,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utils.Languages;
 
 public class CareersVeeamPage {
 
-    private ChromeDriver driver;
-
-
-    @FindBy(css = "dd[id=\"country-element\"]")
-    private
+    @FindBy(css = "dd[id=\"country-element\"] span[class=\"selecter-selected\"]")
     WebElement countriesList;
 
     @FindBy(css = "span[data-value=\"Canada\"]")
-    private
     WebElement canada;
 
     @FindBy(css = "div[id=\"language\"]")
-    private
     WebElement languagesList;
 
     @FindBy(css = "label[for=\"ch-10\"]")
-    private
     WebElement french;
 
     @FindBy(css = "a[class=\"selecter-fieldset-submit\"]")
-    private
     WebElement applyLanguage;
 
     @FindBy(css = "div[class=\"vacancies-blocks-container\"]")
@@ -41,8 +32,7 @@ public class CareersVeeamPage {
     WebElement isLanguagesListOpened;
 
     public CareersVeeamPage(ChromeDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(this.driver, this);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean openCountriesList() {
@@ -63,15 +53,15 @@ public class CareersVeeamPage {
         return isLanguagesListOpened.getAttribute("class").endsWith("open");
     }
 
-    public String chooseLanguage(Languages languagesType) {
-        if (languagesType == Languages.FRENCH) {
+    public String chooseLanguage(String language) {
+        if (language.equalsIgnoreCase("french")) {
             french.click();
-            return french.getAttribute("innerText");
+            return french.getAttribute("innerText").trim();
         }
         return null;
     }
 
-    public boolean applyLanguageChoiсe() {
+    public boolean applyLanguageChoice() {
         applyLanguage.click();
         return isLanguagesListOpened.getAttribute("class").endsWith("selecter");
     }

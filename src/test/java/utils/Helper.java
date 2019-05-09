@@ -10,9 +10,11 @@ public class Helper {
         this.driver = driver;
     }
 
-    public void scrollDown() {
+    public void scrollDown(int count) {
         JavascriptExecutor jse = driver;
-        jse.executeScript("window.scrollBy(0,250)", "");
+        for (int i = 0; i < count; i++) {
+            jse.executeScript("window.scrollBy(0,250)", "");
+        }
     }
 
 }

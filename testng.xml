@@ -2,7 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test name="C:/Users/ASUS/Veeam/testTask/src/test/java">
-        <parameter name="country" value="canada"/>
+        <parameter name="country" value="Canada"/>
+        <parameter name="language" value="French"/>
         <classes>
             <class name= "TestCareersVeeamPage"/>
         </classes>
