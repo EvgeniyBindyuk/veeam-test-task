@@ -1,19 +1,21 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utils.Countries;
 import utils.Languages;
-import utils.WebDriverSettings;
 
-public class CareersVeeamPage extends WebDriverSettings {
+public class CareersVeeamPage {
+
+    private ChromeDriver driver;
+
 
     @FindBy(css = "dd[id=\"country-element\"]")
     private
     WebElement countriesList;
 
-    @FindBy(css = "span[data-value=\"canada\"]")
+    @FindBy(css = "span[data-value=\"Canada\"]")
     private
     WebElement canada;
 
@@ -32,24 +34,33 @@ public class CareersVeeamPage extends WebDriverSettings {
     @FindBy(css = "div[class=\"vacancies-blocks-container\"]")
     WebElement jobList;
 
-    public CareersVeeamPage() {
+    @FindBy(xpath = "//dd[@id=\"country-element\"]/div")
+    WebElement isCountriesListOpened;
+
+    @FindBy(xpath = "//div[@id=\"language\"]")
+    WebElement isLanguagesListOpened;
+
+    public CareersVeeamPage(ChromeDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(this.driver, this);
     }
 
-    public void openCountriesList() {
+    public boolean openCountriesList() {
         countriesList.click();
+        return isCountriesListOpened.getAttribute("class").endsWith("open");
     }
 
-    public String chooseCountry(Countries countriesType) {
-        if (countriesType == Countries.CANADA) {
+    public String chooseCountry(String country) {
+        if (country.equalsIgnoreCase("canada")) {
             canada.click();
             return canada.getAttribute("innerText");
         }
         return null;
     }
 
-    public void openLanguageList() {
+    public boolean openLanguageList() {
         languagesList.click();
+        return isLanguagesListOpened.getAttribute("class").endsWith("open");
     }
 
     public String chooseLanguage(Languages languagesType) {
@@ -60,7 +71,8 @@ public class CareersVeeamPage extends WebDriverSettings {
         return null;
     }
 
-    public void applyLanguageChoiсe() {
+    public boolean applyLanguageChoiсe() {
         applyLanguage.click();
+        return isLanguagesListOpened.getAttribute("class").endsWith("selecter");
     }
 }
