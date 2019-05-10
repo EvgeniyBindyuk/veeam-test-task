@@ -87,7 +87,7 @@ public class CareersVeeamPage {
         return jobsFound.getAttribute("innerText");
     }
 
-    public int vacanciesCount() {
+    public int vacanciesBlockCount() {
         if (helper.isElementPresent(By.cssSelector("a[class=\"content-loader-button load-more-button \"]"))) {
             showAllJobsButton.click();
         }

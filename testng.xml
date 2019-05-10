@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test name="C:/Users/ASUS/Veeam/testTask/src/test/java">
+<suite name="SuiteOne" parallel="methods" thread-count="2">
+    <test name="CareersCountTest">
         <parameter name="country" value="Canada"/>
         <parameter name="language" value="French"/>
         <parameter name="jobsFound" value="1 job found"/>
         <classes>
-            <class name= "TestCareersVeeamPage"/>
+            <class name="tests.TestCareersVeeamPage"/>
         </classes>
     </test>
 </suite>

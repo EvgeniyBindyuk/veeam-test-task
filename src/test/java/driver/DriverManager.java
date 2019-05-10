@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class DriverManager {
 
-    protected WebDriver driver;
+    WebDriver driver;
 
     protected abstract void startService();
 

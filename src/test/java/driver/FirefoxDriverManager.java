@@ -1,6 +1,7 @@
 package driver;
 
 public class FirefoxDriverManager extends DriverManager {
+
     @Override
     protected void startService() {
 
