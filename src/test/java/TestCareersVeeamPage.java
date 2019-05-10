@@ -3,7 +3,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.CareersVeeamPage;
-import utils.Helper;
 import utils.WebDriverSettings;
 
 public class TestCareersVeeamPage extends WebDriverSettings {
@@ -11,11 +10,9 @@ public class TestCareersVeeamPage extends WebDriverSettings {
 
     @BeforeTest
     public void setup() {
-        Helper helper = new Helper(driver);
         objCareersPage = new CareersVeeamPage(driver);
         driver.get("https://careers.veeam.com/");
         driver.manage().window().maximize();
-        helper.scrollDown(2);
     }
 
     @Test(priority = 1)
@@ -26,7 +23,8 @@ public class TestCareersVeeamPage extends WebDriverSettings {
     @Test(priority = 2)
     @Parameters(value = "country")
     public void chooseCountryTest(String country) {
-        Assert.assertEquals(country, objCareersPage.chooseCountry(country));
+        String actualCountry = objCareersPage.chooseCountry(country);
+        Assert.assertEquals(country, actualCountry);
     }
 
     @Test(priority = 3)
@@ -37,12 +35,20 @@ public class TestCareersVeeamPage extends WebDriverSettings {
     @Test(priority = 4)
     @Parameters(value = "language")
     public void chooseLanguageTest(String language) {
-        Assert.assertEquals(language, objCareersPage.chooseLanguage(language));
+        String actualLanguage = objCareersPage.chooseLanguage(language);
+        Assert.assertEquals(language, actualLanguage);
     }
 
-    @Test(priority = 5)
-    public void applyLanguageChoiceTest() {
-        Assert.assertTrue(objCareersPage.applyLanguageChoice());
+    @Test(priority = 6)
+    @Parameters(value = "jobsFound")
+    public void jobsCountTest(String jobsFound) {
+        Assert.assertEquals(jobsFound, objCareersPage.jobsFoundOnPage(jobsFound));
     }
 
+    @Test(priority = 7)
+    @Parameters(value = "jobsFound")
+    public void vacanciesBlocksCountTest(String jobsFound) {
+        Assert.assertEquals(Integer.parseInt(jobsFound.replaceAll("\\D", "")),
+                objCareersPage.vacanciesCount());
+    }
 }

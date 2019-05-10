@@ -4,6 +4,7 @@
     <test name="C:/Users/ASUS/Veeam/testTask/src/test/java">
         <parameter name="country" value="Canada"/>
         <parameter name="language" value="French"/>
+        <parameter name="jobsFound" value="1 job found"/>
         <classes>
             <class name= "TestCareersVeeamPage"/>
         </classes>
