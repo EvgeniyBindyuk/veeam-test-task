@@ -1,18 +1,27 @@
+import driver.DriverManager;
+import driver.DriverManagerFactory;
+import driver.DriverType;
 import org.junit.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
 import pages.CareersVeeamPage;
-import utils.WebDriverSettings;
 
-public class TestCareersVeeamPage extends WebDriverSettings {
+public class TestCareersVeeamPage {
     private CareersVeeamPage objCareersPage;
+    private DriverManager driverManager;
 
     @BeforeTest
     public void setup() {
+        driverManager = DriverManagerFactory.getManager(DriverType.CHROME);
+        WebDriver driver = driverManager.getDriver();
         objCareersPage = new CareersVeeamPage(driver);
         driver.get("https://careers.veeam.com/");
         driver.manage().window().maximize();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        driverManager.quitDriver();
     }
 
     @Test(priority = 1)

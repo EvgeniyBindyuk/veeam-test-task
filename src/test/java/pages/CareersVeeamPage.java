@@ -1,8 +1,8 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,7 +12,7 @@ import utils.Helper;
 public class CareersVeeamPage {
 
     private Helper helper;
-    private ChromeDriver driver;
+    private WebDriver driver;
 
     @FindBy(css = "dd[id=\"country-element\"] span[class=\"selecter-selected\"]")
     WebElement countriesList;
@@ -38,13 +38,10 @@ public class CareersVeeamPage {
     @FindBy(css = "a[class=\"content-loader-button load-more-button \"]")
     WebElement showAllJobsButton;
 
-//    @FindBy(css = "div[class=\"vacancies-blocks-container\"]")
-//    WebElement vacanciesBlocks;
-
     @FindBy(css = "div[class*=\"row vacancies-blocks\"] h3")
     WebElement jobsFound;
 
-    public CareersVeeamPage(ChromeDriver driver) {
+    public CareersVeeamPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
         helper = new Helper(this.driver);
@@ -84,9 +81,9 @@ public class CareersVeeamPage {
         return null;
     }
 
-    public String jobsFoundOnPage(String jobsCount) {
+    public String jobsFoundOnPage(String jobsFoundOnPage) {
         new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.textToBePresentInElement(jobsFound, jobsCount));
+                .until(ExpectedConditions.textToBePresentInElement(jobsFound, jobsFoundOnPage));
         return jobsFound.getAttribute("innerText");
     }
 

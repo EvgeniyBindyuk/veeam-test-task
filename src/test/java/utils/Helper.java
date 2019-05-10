@@ -2,12 +2,12 @@ package utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 
 public class Helper {
-    private ChromeDriver driver;
+    private WebDriver driver;
 
-    public Helper(ChromeDriver driver) {
+    public Helper(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -21,7 +21,7 @@ public class Helper {
     }
 
     public void scrollDown(int count) {
-        JavascriptExecutor jse = driver;
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         for (int i = 0; i < count; i++) {
             jse.executeScript("window.scrollBy(0,250)", "");
         }
