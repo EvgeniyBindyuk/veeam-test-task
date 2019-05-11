@@ -81,9 +81,9 @@ public class CareersVeeamPage {
         return null;
     }
 
-    public String jobsFoundOnPage(String jobsFoundOnPage) {
+    public String jobsFoundOnPage(String jobsFoundExpected) {
         new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.textToBePresentInElement(jobsFound, jobsFoundOnPage));
+                .until(ExpectedConditions.textToBePresentInElement(jobsFound, jobsFoundExpected));
         return jobsFound.getAttribute("innerText");
     }
 
